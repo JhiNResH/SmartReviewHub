@@ -10,7 +10,6 @@ import mapStyles from './mapStyles';
 const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked, weatherData}) => {
     const classes = useStyles();
     const matches = useMediaQuery('(min-width:600px)');
-    
 
     return (
         <div className={classes.mapContainer}>
@@ -27,7 +26,7 @@ const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked, 
                 }}
                 onChildClick={(child) => setChildClicked(child)} 
             >
-                {places.length && places.map((place, i) => (
+                {places?.map((place, i) => (
                     <div
                         className={classes.markerContainer}
                         lat={Number(place.latitude)}
@@ -50,7 +49,7 @@ const Map = ({ setCoordinates, setBounds, coordinates, places, setChildClicked, 
                             )}
                     </div>
                 ))}
-                {weatherData?.list?.length && weatherData.list.map((data, i) => (
+                {weatherData?.list?.map((data, i) => (
                     <div key ={i} lat={data.coord.lat} lng={data.coord.lon}>
                         <img  src={`https://openweathermap.org/img/${data.weather[0].icon}.png`} height="70px" />
                     </div>
