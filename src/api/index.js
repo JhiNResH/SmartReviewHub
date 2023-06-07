@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import axios from 'axios';
 
 export const getPlacesData = async (type, sw, ne) => {
@@ -12,26 +13,28 @@ export const getPlacesData = async (type, sw, ne) => {
           headers: {
             'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
             'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-          }
+          },
         });
           
         return data;
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 }
 
 export const getWeatherData = async (lat, lng) => {
   try {
+    if (lat && lng) {
     const { data } = await axios.get('https://open-weather-map27.p.rapidapi.com/weather', {
+      params: { lat, lon: lng },
       headers: {
         'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
         'X-RapidAPI-Host': 'open-weather-map27.p.rapidapi.com'
-      }
+      },
     });
-
     return data;
-  } catch(error) {
-    console.log(error)
+   }
+  } catch (error) {
+    console.log(error);
   }
-}
+};
